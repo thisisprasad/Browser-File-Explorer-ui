@@ -30,7 +30,7 @@ define([
             self.$el.find("#items").html("")
             items.each(function(item){
                 modelHtml = item.htmlString({
-                    class: "xplorer_item",
+                    class: "xplorer_item_list",
                     value: item.get('name'),
                     dataAttr: {
                         isfile: item.get('isFile')

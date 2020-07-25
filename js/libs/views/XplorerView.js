@@ -31,7 +31,7 @@ define([
             });
             
             self.itemView = new XplorerItemView({
-                el: "#xplorer_item"
+                el: "#item_page"
             });
         }
     });
