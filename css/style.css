@@ -1,0 +1,62 @@
+html, body {
+    margin: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+body #xplorer_container {
+    width: inherit;
+    height: inherit;
+}
+
+/* Navigation bar styles */
+body #xplorer_container #nav_bar {
+    height: 20%;
+    max-height: 75px;
+    background-color: azure;
+}
+
+body #xplorer_container #nav_bar_logo {
+    font-size: 16px;
+    font-family: cursive;
+    padding: 3px;
+/*    margin-right: 10px;*/
+    width: 10%;
+    float: left;
+}
+
+body #xplorer_container #nav_bar_location_container {
+    width: 80%;
+    float: right;
+    padding: 3px;
+}
+
+body #xplorer_container #nav_bar_location_container #nav_bar_url {
+    width: 50%;
+    max-width: 650px;
+    padding: inherit;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+body #xplorer_container #nav_bar_location_container #nav_bar_url:focus {
+    border: 1px solid #777;
+}
+
+body #xplorer_container #nav_bar_location_container #nav_bar_refresh {
+    padding: inherit;
+}
+
+/* Info bar styles */
+body #xplorer_container #info_bar {
+    height: 10%;
+    max-height: 50px;
+    width: inherit;
+    position: absolute;
+    bottom: 10px;
+    background-color: chartreuse;
+}
