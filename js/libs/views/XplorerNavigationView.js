@@ -5,8 +5,14 @@ define([
     'text!../tpl/XplorerNavigationViewTemplate.html',
     '../config/config',
     '../models/XplorerItem',
-    '../collections/XplorerItemCollection'
-], function($, _, Backbone, XplorerNavigationViewTemplate, appConfig, XplorerItem, XplorerItemCollection){
+    '../collections/XplorerItemCollection',
+    '../config/Constants'
+], function($, _, Backbone,
+             XplorerNavigationViewTemplate,
+             appConfig,
+             XplorerItem,
+             XplorerItemCollection,
+             Constants){
     var self;
     
     var XplorerNavView = Backbone.View.extend({
@@ -40,9 +46,7 @@ define([
                     crossDomain: true,
                     dataType: 'json',
                     success: function(data, textStatus, xhr) {
-                        console.log("AJAX data: " + JSON.stringify(data));
-                        //  Backbone.trigger('loadDirectoryElements', data);
-                        self._notifyItemViewForCollection(data);
+                        self._notifyItemViewForCollection(data, url);
                     },
                     error: function(xhr, textStatus, errorThrown) {
                         alert("error from ajax req.");
@@ -55,7 +59,7 @@ define([
         /**
             Creates collection of XplorerItem and triggers an event on Backbone event-bus
         */
-        _notifyItemViewForCollection: function(data) {
+        _notifyItemViewForCollection: function(data, url) {
             var itemCollection = new XplorerItemCollection();
             
             data.elements.forEach(function(item, index){
@@ -67,6 +71,7 @@ define([
                 }));
             });
             Backbone.trigger('loadDirectoryElements', itemCollection);
+            Backbone.trigger(Constants.UPDATE_CURR_DIRECTORY, url);
         }
     });
     

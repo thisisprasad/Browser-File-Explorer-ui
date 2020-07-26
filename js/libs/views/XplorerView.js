@@ -6,8 +6,10 @@ define([
     'underscore',
     'backbone',
     './XplorerNavigationView',
-    './XplorerItemView'
-], function($, _, Backbone, XplorerNavigationView, XplorerItemView){
+    './XplorerItemView',
+    '../config/Constants',
+    '../models/XplorerAppState'
+], function($, _, Backbone, XplorerNavigationView, XplorerItemView, Constants, XplorerAppState){
     var self;
     
     var XplorerView = Backbone.View.extend({
@@ -15,6 +17,8 @@ define([
             console.log("Initializing File Xplorer...");
             self = this;
             self.options = options;
+            self.state = new XplorerAppState({});
+            Backbone.on(Constants.UPDATE_CURR_DIRECTORY, this.setCurrentDirectory, this);
             self.render();
         },
         
@@ -33,6 +37,11 @@ define([
             self.itemView = new XplorerItemView({
                 el: "#item_page"
             });
+        },
+        
+        setCurrentDirectory: function(url) {
+            self.state.set('currentDirectory', url);
+            console.log("current working directory: " + self.state.get('currentDirectory'));
         }
     });
     

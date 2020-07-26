@@ -24,6 +24,9 @@ define([
             console.log("ItemView rendered...");
         },
         
+        /**
+            This method will load items when a trigger from nav-bar url is initiated.
+        */
         onLoadDirectoryElements: function(items) {
             var modelHtml = "";
             
@@ -37,9 +40,16 @@ define([
                     }
                 });
                 self.$el.find("#items").append(modelHtml);
-                
-                console.log("model html: " + modelHtml);
             });
+        },
+        
+        events: {
+            "click .xplorer_item": "_openItem"
+        },
+        
+        _openItem: function(event) {
+//            console.log($(this).data("isfile"));
+            console.log("event get attr: " + event.target.getAttribute("data-isfile"));
         }
     });
     

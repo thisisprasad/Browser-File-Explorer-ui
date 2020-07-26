@@ -1,5 +1,5 @@
 html, body {
-    margin: 5px;
+    margin: 0px;
     height: 100%;
     width: 100%;
 }
@@ -11,8 +11,9 @@ body #xplorer_container {
 
 /* Navigation bar styles */
 body #xplorer_container #nav_bar {
+    padding: 5px;
     height: 20%;
-    max-height: 50px;
+    max-height: 35px;
     background-color: azure;
 }
 
