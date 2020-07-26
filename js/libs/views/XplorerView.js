@@ -1,5 +1,6 @@
 /**
 Definition of File Xplorer view. This is the parent view which contains child views.
+This view also acts as the controller for the entire project.
 */
 define([
     'jquery',
@@ -7,9 +8,9 @@ define([
     'backbone',
     './XplorerNavigationView',
     './XplorerItemView',
-    '../config/Constants',
-    '../models/XplorerAppState'
-], function($, _, Backbone, XplorerNavigationView, XplorerItemView, Constants, XplorerAppState){
+    '../controller/AppController',
+    '../config/config'
+], function($, _, Backbone, XplorerNavigationView, XplorerItemView, AppController, appConfig){
     var self;
     
     var XplorerView = Backbone.View.extend({
@@ -17,8 +18,7 @@ define([
             console.log("Initializing File Xplorer...");
             self = this;
             self.options = options;
-            self.state = new XplorerAppState({});
-            Backbone.on(Constants.UPDATE_CURR_DIRECTORY, this.setCurrentDirectory, this);
+            self.appController = new AppController({obj: "main"});
             self.render();
         },
         
@@ -37,12 +37,9 @@ define([
             self.itemView = new XplorerItemView({
                 el: "#item_page"
             });
+            
+//            console.log("Creating controller");
         },
-        
-        setCurrentDirectory: function(url) {
-            self.state.set('currentDirectory', url);
-            console.log("current working directory: " + self.state.get('currentDirectory'));
-        }
     });
     
     return XplorerView
