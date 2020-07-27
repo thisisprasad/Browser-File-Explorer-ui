@@ -18,6 +18,7 @@ define([
     var XplorerNavView = Backbone.View.extend({
         initialize: function(options) {
             self = this;
+            Backbone.on(Constants.triggers.SET_WORKING_DIRECTORY, this.setWorkingDirectroy, this);
             self.render();
         },
         
@@ -33,10 +34,24 @@ define([
         _openDirectory: function(event) {
             if(event.which == 13){
                 var url = $("#nav_bar_url").val();
-                console.log("Triggering...")
-                Backbone.trigger(Constants.OPEN_DIRECTORY, url);
+                url = self._validateUrl(url);
+                $("#nav_bar_url").val(url);
+                Backbone.trigger(Constants.triggers.OPEN_DIRECTORY, url);
             }
         },
+        
+        setWorkingDirectroy: function(url) {
+            self.$el.find("#nav_bar_url").val(url);
+        },
+        
+        _validateUrl: function(url) {
+            //  replace backslash with forwardslash.
+            //  Multiple backslashes are replaced by single forward slash.
+            url = url.replace(/\\+/g, "/");
+            if(url[url.length-1] == '/' && url[url.length-2]!=':') url = url.slice(0, -1);
+            
+            return url;
+        }
     });
     
     return XplorerNavView;

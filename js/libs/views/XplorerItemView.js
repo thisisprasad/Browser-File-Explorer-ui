@@ -15,7 +15,7 @@ define([
             self = this;
             self.options = options;
             self.itemCollection = null;
-            Backbone.on(Constants.LOAD_DIRECTORY, this.onLoadDirectoryElements, this);
+            Backbone.on(Constants.triggers.LOAD_DIRECTORY, this.onLoadDirectoryElements, this);
             self.render();
         },
         
@@ -53,7 +53,7 @@ define([
             self.$el.find("#items").html("")
             self.itemCollection.each(function(item){
                 modelHtml = item.htmlString({
-                    class: "xplorer_item_list",
+                    class: "xplorer_list_item",
                     value: item.get('name'),
                     dataAttr: {
                         isfile: item.get('isFile')
@@ -64,14 +64,14 @@ define([
         },
         
         events: {
-            "click .xplorer_item": "_openItem"
+            "click .xplorer_list_item": "_openItem"
         },
         
         _openItem: function(event) {
-//            console.log($(this).data("isfile"));
             console.log("event get attr: " + event.target.getAttribute("data-isfile"));
-            if(event.target.getAttribute("data-isfile") == false){
-                //  get current open directory and append the folder name. Hit the AJAX
+            if(event.target.getAttribute("data-isfile") == 'false'){
+                //  Open the folder or directory
+                Backbone.trigger(Constants.triggers.OPEN_LOCAL_FOLDER, event.target.getAttribute("value"));
             }
             else {
                 alert("The app currently does not support Reading and writing files in web-app");

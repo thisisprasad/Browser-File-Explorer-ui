@@ -14,7 +14,7 @@ body #xplorer_container #nav_bar {
     padding: 5px;
     height: 20%;
     max-height: 35px;
-    background-color: azure;
+/*    background-color: azure;*/
 }
 
 body #xplorer_container #nav_bar_logo {
@@ -23,6 +23,17 @@ body #xplorer_container #nav_bar_logo {
 /*    margin-right: 10px;*/
     width: 10%;
     float: left;
+}
+
+body #xplorer_container #nav_back {
+    width: 20px;
+    height: 20px;
+    float: left;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    margin-right: 5px;
+    cursor: pointer;
 }
 
 body #xplorer_container #nav_bar_location_container {
@@ -87,13 +98,13 @@ body #xplorer_container #item_page .xplorer_item {
 									   color-stop(0.86, rgb(28,58,148)));
 }
 
-body #xplorer_container #item_page .xplorer_item_list {
+body #xplorer_container #item_page .xplorer_list_item {
     border-bottom: 1px solid #ddd;
     margin-bottom: 5px;
     padding-bottom: 5px;
 }
 
-body #xplorer_container #item_page .xplorer_item_list:hover {
+body #xplorer_container #item_page .xplorer_list_item:hover {
     cursor: pointer;
     text-decoration: underline;
 }

@@ -18,7 +18,9 @@ define([
             console.log("Initializing File Xplorer...");
             self = this;
             self.options = options;
-            self.appController = new AppController({obj: "main"});
+            self.navView = null;
+            self.itemView = null;
+            self.appController = null;
             self.render();
         },
         
@@ -37,7 +39,7 @@ define([
             self.itemView = new XplorerItemView({
                 el: "#item_page"
             });
-            
+            self.appController = new AppController({});
 //            console.log("Creating controller");
         },
     });

@@ -9,7 +9,9 @@ define(function(){
         triggers: {
             LOAD_DIRECTORY: 'loadDirectoryElements',
             UPDATE_CURR_DIRECTORY: 'updateCurrentDirectory',
-            OPEN_DIRECTORY: 'openDirectory'
+            SET_WORKING_DIRECTORY: 'setWorkingDirectory',
+            OPEN_DIRECTORY: 'openDirectory',
+            OPEN_LOCAL_FOLDER: 'openLocalFolder'
         }
     };
     
