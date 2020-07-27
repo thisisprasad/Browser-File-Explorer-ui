@@ -28,16 +28,32 @@ define([
         },
         
         events: {
-            "keypress #nav_bar_url": "_openDirectory"
+            "keypress #nav_bar_url": "openDirectory",
+            "click #nav_back": "moveOneDirBack"
         },
         
-        _openDirectory: function(event) {
+        openDirectory: function(event) {
             if(event.which == 13){
-                var url = $("#nav_bar_url").val();
+                var url = self.$el.find("#nav_bar_url").val();
                 url = self._validateUrl(url);
-                $("#nav_bar_url").val(url);
+                self.$el.find("#nav_bar_url").val(url);
                 Backbone.trigger(Constants.triggers.OPEN_DIRECTORY, url);
             }
+        },
+        
+        moveOneDirBack: function() {
+            var url = self.$el.find("#nav_bar_url").val();
+            var pos = url.length;
+            for(var i = url.length-1; i >= 0; i--){
+                if(url[i] == "/"){
+                    pos = i;
+                    break;
+                }
+            }
+            url = url.slice(0, pos+1);
+            url = self._validateUrl(url);
+            self.$el.find("#nav_bar_url").val(url);
+            Backbone.trigger(Constants.triggers.OPEN_DIRECTORY, url);
         },
         
         setWorkingDirectroy: function(url) {
