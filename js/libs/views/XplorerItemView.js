@@ -68,7 +68,6 @@ define([
         },
         
         _openItem: function(event) {
-            console.log("event get attr: " + event.target.getAttribute("data-isfile"));
             if(event.target.getAttribute("data-isfile") == 'false'){
                 //  Open the folder or directory
                 Backbone.trigger(Constants.triggers.OPEN_LOCAL_FOLDER, event.target.getAttribute("value"));

@@ -49,7 +49,10 @@ define([
         },
         
         openLocalFolder: function(localFolderName) {
-            self.openDirectory(self.state.get('currentDirectory') + "/" + localFolderName);
+            var currDir = self.state.get('currentDirectory');
+            if(currDir[currDir.length-2] != ':') currDir += "/";
+            currDir += localFolderName;
+            self.openDirectory(currDir);
         }
     });
 

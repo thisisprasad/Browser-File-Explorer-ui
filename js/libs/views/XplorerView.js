@@ -9,8 +9,9 @@ define([
     './XplorerNavigationView',
     './XplorerItemView',
     '../controller/AppController',
-    '../config/config'
-], function($, _, Backbone, XplorerNavigationView, XplorerItemView, AppController, appConfig){
+    '../config/config',
+    '../config/Constants'
+], function($, _, Backbone, XplorerNavigationView, XplorerItemView, AppController, appConfig, Constants){
     var self;
     
     var XplorerView = Backbone.View.extend({
@@ -23,6 +24,7 @@ define([
             self.appController = null;
             self.render();
         },
+        
         
         render: function() {
             var template = _.template(self.options.template);

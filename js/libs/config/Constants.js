@@ -12,6 +12,10 @@ define(function(){
             SET_WORKING_DIRECTORY: 'setWorkingDirectory',
             OPEN_DIRECTORY: 'openDirectory',
             OPEN_LOCAL_FOLDER: 'openLocalFolder'
+        },
+        
+        keycodes: {
+            BACKSPACE: 8
         }
     };
     
