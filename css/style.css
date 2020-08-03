@@ -109,6 +109,13 @@ body #xplorer_container #item_page .xplorer_list_item:hover {
     text-decoration: underline;
 }
 
+/* XplorerItemContextmenuView styles. */
+body #xplorer_container #item_page #item_context_menu #item_context_menu_options{
+    display: none;
+    color: darkseagreen;
+}
+/* XplorerItemContextmenuView styles end. */
+
 /* Info bar styles */
 body #xplorer_container #info_bar {
     height: 10%;

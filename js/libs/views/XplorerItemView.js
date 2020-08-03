@@ -3,10 +3,11 @@ define([
     'underscore',
     'backbone',
     'text!../tpl/XplorerItemViewTemplate.html',
+    './XplorerItemContext/XplorerItemContextmenuView',
     '../models/XplorerItem',
     '../collections/XplorerItemCollection',
     '../config/Constants'
-], function($, _, Backbone, XplorerItemViewTemplate, XplorerItem, XplorerItemCollection, Constants){
+], function($, _, Backbone, XplorerItemViewTemplate, ItemContextView, XplorerItem, XplorerItemCollection, Constants){
     var self;
     
     var XplorerItemView = Backbone.View.extend({
@@ -22,6 +23,9 @@ define([
         render: function() {
             var template = _.template(XplorerItemViewTemplate);
             self.$el.html(template);
+            self.itemContextView = new ItemContextView({ 
+                el: "#item_context_menu"
+            });
             
             console.log("ItemView rendered...");
         },
@@ -64,7 +68,8 @@ define([
         },
         
         events: {
-            "click .xplorer_list_item": "_openItem"
+            "dblclick .xplorer_list_item": "_openItem",
+            "mousedown .xplorer_list_item": "openItemMenu"
         },
         
         _openItem: function(event) {
@@ -75,7 +80,9 @@ define([
             else {
                 alert("The app currently does not support Reading and writing files in web-app");
             }
-        }
+        },
+        
+        openItemMenu: function(e) {console.log("Mouse click event captured");}
     });
     
     return XplorerItemView;

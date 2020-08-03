@@ -14,6 +14,15 @@ define(function(){
             OPEN_LOCAL_FOLDER: 'openLocalFolder'
         },
         
+        contextmenuOptions: {
+            OPEN: 'open',
+            DELETE: 'delete',
+            MOVE: 'move',
+            COPY: 'copy',
+            RENAME: 'rename',
+            INFO: 'info'
+        },
+        
         keycodes: {
             BACKSPACE: 8
         }
