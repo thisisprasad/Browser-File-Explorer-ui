@@ -114,6 +114,53 @@ body #xplorer_container #item_page #item_context_menu #item_context_menu_options
     display: none;
     color: darkseagreen;
 }
+
+.context_menu {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    padding: 12px;
+    width: 200px;
+    background-color: #fff;
+    border: solid 1px #dfdfdf;
+    box-shadow: 1px 1px 2px #cfcfcf;
+}
+.context_menu--active { display: block; }
+
+.menu_options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu_option {
+    display: block;
+    margin-bottom: 4px;
+}
+.menu_option:hover {
+    color: #fff;
+    background-color: #0066aa;
+    cursor: pointer;
+}
+
+.menu_option:last-child { margin-bottom: 0px; }
+.menu_options ul {
+    position: absolute;
+    white-space: nowrap;
+    z-index: 1;
+    left: -99999em;
+}
+.menu_options > li:hover > ul {
+    left: auto;
+    padding-top: 5px;
+    min-width: 100%;
+}
+.menu_options > li li ul { border-left: 1px solid #fff; }
+.menu_options > li  li:hover > ul {
+    left: 100%;
+    top: -1px;
+}
+
 /* XplorerItemContextmenuView styles end. */
 
 /* Info bar styles */
