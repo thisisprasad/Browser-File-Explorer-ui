@@ -4,8 +4,9 @@ define([
     'backbone',
     '../../config/config',
     '../../config/Constants',
-    'text!../../tpl/XplorerItemContextmenuTemplate.html'
-], function($, _, Backbone, config, Constants, ItemContextTemplate){
+    'text!../../tpl/XplorerItemContextmenuTemplate.html',
+    '../../../../config/AppConfig'
+], function($, _, Backbone, config, Constants, ItemContextTemplate, AppConfig){
     var self;
     
     var ItemContextView = Backbone.View.extend({
@@ -16,6 +17,7 @@ define([
             self.menu = null;
             self.contextMenuActiveClass = "context_menu--active";
             Backbone.on(Constants.triggers.ESCAPE_PRESS, this.closeMenu, this);
+            self._integrateAppOptions();
             console.log("ItemContextMenuView initialized...");
             self.render();
         },
@@ -35,6 +37,16 @@ define([
             self.menu = document.querySelector("#item_context_menu");
             self.$el.find("#item_context_menu_options").append(html);
             self.$el.find("#item_context_menu_options").css("display", "block");
+        },
+        
+        /**
+            Read the configuration file of project/application. Adds required options of other apps
+            in contextmenu.
+        */
+        _integrateAppOptions: function() {
+            for(app of AppConfig.apps){
+                console.log("app ka name: " + app.name);
+            }
         },
         
         closeMenu: function(){

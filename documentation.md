@@ -3,5 +3,5 @@ The app configuration file is present in the config folder of project's root fol
 1. name - Name of the Application.
 2. version - Version to use while running the application.
 3. apps - This is an array of objects. This is the way to integrate applications with this project(FileXplorer). Each object representing an application. Each application/object contains following attributes:
-    i. name - Name of the application to be integrated.
-    ii. 
+    i. name - Name of the application to be integrated. A folder with this same name should be present in the apps folder. Each application must contain an "app.js" file. This file should/will override methods required to be done by every application. This is done by keeping in-mind the future prospects of the project.
+    ii. contextmenu
