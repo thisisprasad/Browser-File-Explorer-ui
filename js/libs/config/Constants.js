@@ -11,7 +11,8 @@ define(function(){
             UPDATE_CURR_DIRECTORY: 'updateCurrentDirectory',
             SET_WORKING_DIRECTORY: 'setWorkingDirectory',
             OPEN_DIRECTORY: 'openDirectory',
-            OPEN_LOCAL_FOLDER: 'openLocalFolder'
+            OPEN_LOCAL_FOLDER: 'openLocalFolder',
+            ESCAPE_PRESS: 'escapePress'
         },
         
         contextmenuOptions: {
@@ -24,7 +25,8 @@ define(function(){
         },
         
         keycodes: {
-            BACKSPACE: 8
+            BACKSPACE: 8,
+            ESCAPE: 27
         }
     };
     

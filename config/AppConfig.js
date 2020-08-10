@@ -7,12 +7,7 @@ define([
         name: "FileXplorer",
         version: "1.0",
         apps: [
-            {
-                name: "File Encryption",
-                contextmenu: {
-                    
-                }
-            },
+            {}
         ]
     }
 });

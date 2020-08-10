@@ -24,7 +24,8 @@ define([
             var template = _.template(XplorerItemViewTemplate);
             self.$el.html(template);
             self.itemContextView = new ItemContextView({ 
-                el: "#item_context_menu"
+//                el: "#item_context_menu"
+                el: "#context_region"
             });
             
             console.log("ItemView rendered...");
@@ -83,55 +84,10 @@ define([
         },
         
         openItemMenu: function(event) {
-//            self.itemContextView.openContextMenu(event);
-            self.openContextMenu(event);
+            self.itemContextView.openContextMenu(event);
         },
         
-        openContextMenu: function(event){
-            var contextMenuActive = "context_menu--active";
-            var menu = document.querySelector("#item_context_menu");
-            menu.classList.add(contextMenuActive);
-            console.log("opening context menu...");
-            var clickCoords = self._getPosition(event);
-            var clickCoordsX = clickCoords.x;
-            var clickCoordsY = clickCoords.y;
-            
-            var menuWidth = menu.offsetWidth + 4;
-            var menuHeight = menu.offsetHeight + 4;
-            
-            var windowWidth = window.innerWidth;
-            var windowHeight = window.innerHeight;
-            
-            if((windowWidth - clickCoordsX) < menuWidth){
-                menu.style.left = (windowWidth - menuWidth) - 0 + "px";
-            } else {
-                menu.style.left = clickCoordsX-0 + "px";
-            }
-            
-            if(Math.abs(windowHeight - clickCoordsY) < menuHeight){
-                menu.style.top = (windowHeight - menuHeight)-0 + "px";
-            } else {
-                menu.style.top = clickCoordsY-0 + "px";
-            }
-        },
-        
-        _getPosition: function(e){
-            console.log("Inside getPosition");
-            var posx = 0, posy = 0;
-            if(!e) var e = window.event;
-            if(e.pageX || e.pageY){
-                posx = e.pageX;
-                posy = e.pageY;
-            } else if(e.clientX || e.clientY){
-                posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-                posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-            }
-            
-            return {
-                x: posx,
-                y: posy
-            };
-        }
+
     });
     
     return XplorerItemView;

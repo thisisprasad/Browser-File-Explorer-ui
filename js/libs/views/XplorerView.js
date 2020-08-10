@@ -15,6 +15,16 @@ define([
     var self;
     
     var XplorerView = Backbone.View.extend({
+        
+        events: {
+            "keydown div#xplorer_container": "keypressListeners",
+            "contextmenu #item_page": "openGeneralItem"
+        },
+        
+        openGeneralItem: function(event) {
+            event.preventDefault();
+        },
+        
         initialize: function(options) {
             console.log("Initializing File Xplorer...");
             self = this;
@@ -23,8 +33,17 @@ define([
             self.itemView = null;
             self.appController = null;
             self.render();
+//            self.initializeEventListeners();
         },
         
+        keypressListeners: function(event) {
+            switch(event.which){
+                case Constants.keycodes.ESCAPE:
+                    //  communicate this event across child views
+                    Backbone.trigger(Constants.triggers.ESCAPE_PRESS);
+                    break;
+            }
+        },
         
         render: function() {
             var template = _.template(self.options.template);

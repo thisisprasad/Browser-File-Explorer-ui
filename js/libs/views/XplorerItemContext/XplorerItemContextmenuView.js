@@ -13,12 +13,16 @@ define([
         initialize: function(options){
             self = this;
             self.options = options;
-            console.log("ItemContextMenuView initialized");
+            self.menu = null;
+            self.contextMenuActiveClass = "context_menu--active";
+            Backbone.on(Constants.triggers.ESCAPE_PRESS, this.closeMenu, this);
+            console.log("ItemContextMenuView initialized...");
             self.render();
         },
         
         /**
             Creates options list from config in DOM.
+            Attaches default option and applications specified n config.
         */
         render: function() {
             var template = _.template(ItemContextTemplate);
@@ -27,35 +31,39 @@ define([
             for(option of config.ITEM_VIEW_DEFAULT_CONTEXT_OPTIONS) {
                 html += self._generateOptionHtml(option);
             }
+            html += "<hr>";
+            self.menu = document.querySelector("#item_context_menu");
             self.$el.find("#item_context_menu_options").append(html);
             self.$el.find("#item_context_menu_options").css("display", "block");
         },
         
+        closeMenu: function(){
+            self.menu.classList.remove(self.contextMenuActiveClass);
+        },
+        
         openContextMenu: function(event){
-            var contextMenuActive = "context_menu--active";
-            var menu = document.querySelector("#item_context_menu_options");
-            menu.classList.add(contextMenuActive);
-            console.log("opening context menu...");
+            event.preventDefault();
+            self.menu.classList.add(self.contextMenuActiveClass);
             var clickCoords = self._getPosition(event);
             var clickCoordsX = clickCoords.x;
             var clickCoordsY = clickCoords.y;
             
-            var menuWidth = menu.offsetWidth + 4;
-            var menuHeight = menu.offsetHeight + 4;
+            var menuWidth = self.menu.offsetWidth + 4;
+            var menuHeight = self.menu.offsetHeight + 4;
             
             var windowWidth = window.innerWidth;
             var windowHeight = window.innerHeight;
             
             if((windowWidth - clickCoordsX) < menuWidth){
-                menu.style.left = (windowWidth - menuWidth) - 0 + "px";
+                self.menu.style.left = (windowWidth - menuWidth) - 0 + "px";
             } else {
-                menu.style.left = clickCoordsX-0 + "px";
+                self.menu.style.left = clickCoordsX-0 + "px";
             }
             
             if(Math.abs(windowHeight - clickCoordsY) < menuHeight){
-                menu.style.top = (windowHeight - menuHeight)-0 + "px";
+                self.menu.style.top = (windowHeight - menuHeight)-0 + "px";
             } else {
-                menu.style.top = clickCoordsY-0 + "px";
+                self.menu.style.top = clickCoordsY-0 + "px";
             }
         },
         
