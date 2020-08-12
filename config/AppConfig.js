@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     '../apps/FileEncryption/Constants.js'
-], function($, _, Backbone, FileEncConst){
+], function ($, _, Backbone, FileEncConst) {
     var AppConfig = {
         name: "FileXplorer",
         version: "1.0",
@@ -11,11 +11,11 @@ define([
             {
                 name: "FileEncryption",
                 contextmenu: {
-                    runtimeOptions: FileEncConst.contextmenuOptions
+                    "is-present": true
                 }
-            }
+            },
         ]
     }
-    
+
     return AppConfig;
 });

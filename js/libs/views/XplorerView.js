@@ -33,7 +33,6 @@ define([
             self.itemView = null;
             self.appController = null;
             self.render();
-//            self.initializeEventListeners();
         },
         
         keypressListeners: function(event) {

@@ -1,14 +1,20 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-], function($, _, Backbone){
+    'backbone',
+    '../Constants'
+], function($, _, Backbone, Constants){
     var config = {
+        appName: Constants.appName,
+
         contextmenuOptions: {
             defaultOptions: [],
             runtimeOptions: [
-                "encrypt all files within folder",
-                "select files"
+                Constants.contextmenuOptions.ENCRYPT_ALL_FOLDER_FILES,
+                Constants.contextmenuOptions.SELECT_FOLDER_FILES,
+                Constants.contextmenuOptions.DECRYPT_FOLDER,
+                Constants.contextmenuOptions.ENCRYPT_FILE,
+                Constants.contextmenuOptions.DECRYPT_FILE
             ]
         }
     };

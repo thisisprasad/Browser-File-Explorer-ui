@@ -4,6 +4,8 @@ define([
     'backbone'
 ], function($, _, Backbone){
     var Constants = {
+        appName: "FileEncryption",
+        
         contextmenuOptions: {
             ENCRYPT_ALL_FOLDER_FILES: 'encrypt all files within folder',
             SELECT_FOLDER_FILES: 'select files of folder to encrypt',
