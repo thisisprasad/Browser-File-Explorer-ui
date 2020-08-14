@@ -17,6 +17,7 @@ define([
             self.options = options;
             self.menu = null;
             self.contextMenuActiveClass = "context_menu--active";
+            self.appContextmenuOptionsMap = new Map();
             Backbone.on(Constants.triggers.ESCAPE_PRESS, this.closeMenu, this);
             // self._integrateAppOptions();
             console.log("ItemContextMenuView initialized...");
@@ -41,6 +42,10 @@ define([
             self._integrateAppOptions();
         },
 
+        _addListItemHTMLInContextmenu: function(html) {
+            self.$el.find("#item_context_menu_options").append(html);
+        },
+
         /**
             Read the configuration file of project/application. Adds required options of other apps
             in contextmenu.
@@ -49,10 +54,27 @@ define([
             for (appProp of AppConfig.apps) {
                 let app = Adapter.getAppInstance(appProp.name);
                 let appContextmenuOptions = app.getContextmenuOptions();
-                console.log("app ke options, model ka array: " +
-                    JSON.stringify(appContextmenuOptions));
+                // console.log("app ke options, model ka array: " +
+                //     JSON.stringify(appContextmenuOptions));
                 //  Add the options into contextmenu DOM.
+                self._registerContextmenuOptionsInView(appContextmenuOptions, appProp.name);
+                self._addContextmenuOptionsInDOM(appProp.name);
             }
+        },
+
+        _registerContextmenuOptionsInView: function (contextmenuOptions, appName) {
+            self.appContextmenuOptionsMap.set(appName, new Set());
+            contextmenuOptions.forEach(function (option) {
+                self.appContextmenuOptionsMap.get(appName).add(option);
+            });
+        },
+
+        _addContextmenuOptionsInDOM: function (appName) {
+            var html = "";
+            for (let option of self.appContextmenuOptionsMap.get(appName)) {
+                html += "<li data-option='"+option.get('option')+"' > " +option.get('option')+ " <li>";
+            }
+            self._addListItemHTMLInContextmenu(html);
         },
 
         closeMenu: function () {
