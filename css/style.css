@@ -160,8 +160,13 @@ body #xplorer_container #item_page #item_context_menu #item_context_menu_options
     left: 100%;
     top: -1px;
 }
+/*enable-disable style for menu option*/
+
 
 /* XplorerItemContextmenuView styles end. */
+.disable-option {
+    display: none;
+}
 
 /* Info bar styles */
 body #xplorer_container #info_bar {

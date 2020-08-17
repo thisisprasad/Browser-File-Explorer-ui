@@ -1,5 +1,7 @@
 define(function(){
     var Constants = {
+        DEFAULT_APP: 'defaultApp',
+
         icon_type: {
             LIST: 'list',
             THUMBNAILS: 'thumbnails',
@@ -21,7 +23,11 @@ define(function(){
             MOVE: 'move',
             COPY: 'copy',
             RENAME: 'rename',
-            INFO: 'info'
+            INFO: 'info',
+            OPTION_TYPE: {
+                THIRD_PARTY_APP: 'thirdPartyApp',
+                DEFAULT: 'default'
+            }
         },
         
         keycodes: {
